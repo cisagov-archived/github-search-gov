@@ -5,20 +5,20 @@
 [![Coverage Status](https://coveralls.io/repos/github/cisagov/github-search-gov/badge.svg?branch=develop)](https://coveralls.io/github/cisagov/github-search-gov?branch=develop)
 [![Known Vulnerabilities](https://snyk.io/test/github/cisagov/github-search-gov/develop/badge.svg)](https://snyk.io/test/github/cisagov/github-search-gov)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) Python library GitHub
-project started.  This skeleton project contains [licensing
-information](LICENSE), as well as
-[pre-commit hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for a Python library project.
+Scripts to search public GitHub repositories owned by government organizations.
 
-## New Repositories from a Skeleton ##
+```shell
+./setup-env
+export GITHUB_TOKEN=$(gh auth token)
+export PYTHONUNBUFFERED=true
+search-orgs | tee urls.txt
+analyze-urls urls.txt | tee results.txt
+```
 
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
+> [!NOTE]
+> Expect this to take several minutes to run due to GitHub API rate-limiting.
+> You will see back-off messages in the output as the script waits for the
+> rate-limit to reset.
 
 ## Contributing ##
 

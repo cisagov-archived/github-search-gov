@@ -1,0 +1,44 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
+
+[project]
+keywords = ["github", "search"]
+authors = [{ name = "Mark Feldhousen", email = "mark.feldhousen@cisa.dhs.gov" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+]
+dependencies = ["beautifulsoup4", "PyGithub", "requests"]
+description = "Search government GitHub organizations"
+dynamic = ["version"]
+license = { file = "LICENSE" }
+name = "github-search-gov"
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.urls]
+homepage = "https://github.com/cisagov"
+issues = "https://github.com/cisagov/github-search-gov/issues"
+source = "https://github.com/cisagov/github-search-gov"
+
+[project.optional-dependencies]
+dev = ["semver", "types-requests"]
+test = ["coverage", "coveralls", "pre-commit", "pytest", "pytest-cov"]
+
+[tool.setuptools.dynamic]
+version = { file = "src/version.txt" }
+
+[project.scripts]
+analyze-urls = "gh_search.analyze_urls:main"
+search-orgs = "gh_search.search_orgs:main"
