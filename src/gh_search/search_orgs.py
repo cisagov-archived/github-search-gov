@@ -1,5 +1,8 @@
 #!/usr/bin/env python3 -u
-"""Search government GitHub organizations for usage of actions."""
+"""Search government GitHub organizations for usage of actions.
+
+BeautifulSoup-based code is fragile and may break if GitHub's HTML changes
+"""
 
 # Standard Python Libraries
 import logging
