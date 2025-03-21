@@ -15,7 +15,7 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Security",
 ]
-dependencies = ["beautifulsoup4", "PyGithub", "requests", "semver"]
+dependencies = ["beautifulsoup4", "PyGithub", "requests"]
 description = "Search government GitHub organizations"
 dynamic = ["version"]
 license = { file = "LICENSE" }
@@ -29,14 +29,8 @@ issues = "https://github.com/cisagov/github-search-gov/issues"
 source = "https://github.com/cisagov/github-search-gov"
 
 [project.optional-dependencies]
-test = [
-    "coverage",
-    "coveralls",
-    "pre-commit",
-    "pytest",
-    "pytest-cov",
-    "types-requests",
-]
+dev = ["pre-commit", "semver", "types-requests"]
+test = ["coverage", "coveralls", "pytest", "pytest-cov"]
 
 [tool.setuptools.dynamic]
 version = { file = "src/version.txt" }
