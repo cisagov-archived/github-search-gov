@@ -31,7 +31,7 @@ def classify_usage(line):
         if not version:
             return "unpinned"
         # Check if version looks like a SHA (40 hex characters)
-        if len(version) == 40 and all(c in "0123456789abcdefABCDEF" for c in version):
+        if re.fullmatch(r"[\da-fA-F]{40}", version):
             return "pinned by sha"
         else:
             return "pinned by tag"
