@@ -163,6 +163,7 @@ repos:
         additional_dependencies:
           - types-docopt
           - types-setuptools
+          - types-requests
   - repo: https://github.com/pypa/pip-audit
     rev: v2.7.3
     hooks:
