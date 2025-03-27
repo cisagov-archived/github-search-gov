@@ -9,6 +9,7 @@ Scripts to search public GitHub repositories owned by government organizations.
 
 ```shell
 ./setup-env
+# Edit SEARCH_QUERY in src/search_orgs.py as needed.
 export GITHUB_TOKEN=$(gh auth token)
 export PYTHONUNBUFFERED=true
 search-orgs | tee urls.txt

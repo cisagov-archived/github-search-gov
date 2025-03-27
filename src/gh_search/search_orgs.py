@@ -14,9 +14,20 @@ from github import Github
 import requests
 
 # CONSTANTS
-ACTION_OF_INTEREST = "tj-actions/changed-files"
 GOV_COMMUNITY_URL = "https://government.github.com/community/"
 GROUP_PREFIX = "governments-us"
+CVE_2025_30066 = (
+    "org:{org_name} uses: tj-actions/changed-files language:YAML path:.github/"
+)
+CVE_2025_30154 = (
+    r"org:{org_name} "
+    r"\(reviewdog/action-setup@v1 OR reviewdog/action-shellcheck OR "
+    r"reviewdog/action-composite-template OR reviewdog/action-staticcheck OR "
+    r"reviewdog/action-ast-grep OR reviewdog/action-typos\) AND secrets. "
+    r"language:yaml path:/^\.github\/workflows\//"
+)
+# Set SEARCH_QUERY to the desired query from above.
+SEARCH_QUERY = CVE_2025_30066
 
 
 def main():
@@ -48,7 +59,8 @@ def main():
         "h3", class_="alt-h3 mb-3", id=lambda x: x and x.startswith(GROUP_PREFIX)
     )
 
-    print(f"# Searching for {ACTION_OF_INTEREST} in {len(org_groups)} groups")
+    print(f"# Searching in {len(org_groups)} groups")
+    print(f"# Query: {SEARCH_QUERY}")
 
     # Iterate over each group of organizations
     for group in org_groups:
@@ -59,9 +71,7 @@ def main():
             org_name = link["title"].strip()
             print(f"# {org_name}")
 
-            search_query = (
-                f"org:{org_name} uses: {ACTION_OF_INTEREST} language:YAML path:.github/"
-            )
+            search_query = SEARCH_QUERY.format(org_name=org_name)
             try:
                 code_results = gh_client.search_code(query=search_query)
             except Exception as e:
